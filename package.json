@@ -1,0 +1,37 @@
+{
+  "name": "dit",
+  "version": "0.0.1",
+  "main": "index.js",
+  "description": "Reddit CLI utility",
+  "homepage": "https://github.com/yamadapc/dit",
+  "bugs": "https://github.com/yamadapc/dit/issues",
+  "author": {
+    "name": "Pedro Yamada",
+    "email": "tacla.yamada@gmail.com",
+    "url": "github.com/yamadapc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yamadapc/dit"
+  },
+  "licenses": [
+    {
+      "type": "GPL-2.0"
+    }
+  ],
+  "scripts": {
+    "test": "grunt --verbose"
+  },
+  "dependencies": {
+    "commander": "~2.1.0"
+  },
+  "devDependencies": {
+    "should": "~3.1.2",
+
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.7.0",
+    "grunt-simple-mocha": "~0.4.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "time-grunt": "~0.2.9"
+  }
+}
