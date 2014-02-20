@@ -1,0 +1,12 @@
+Usage: dit [options] [commands]
+
+Description:
+  Reddit CLI utility
+
+Commands:
+  login                   create a new dit session
+
+Options:
+  -u, --user <user>       user to log-in with
+  -p, --passwd <passwd>   password to log-in with
+  -h, --help              ouput this message
