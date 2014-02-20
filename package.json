@@ -23,9 +23,9 @@
     "test": "grunt --verbose"
   },
   "dependencies": {
-    "commander": "~2.1.0",
     "superagent": "~0.16.0",
-    "bluebird": "~1.0.5"
+    "bluebird": "~1.0.5",
+    "optimist": "~0.6.1"
   },
   "devDependencies": {
     "should": "~3.1.2",
@@ -33,6 +33,7 @@
     "grunt-contrib-jshint": "~0.7.0",
     "grunt-simple-mocha": "~0.4.0",
     "grunt-contrib-watch": "~0.5.3",
-    "time-grunt": "~0.2.9"
+    "time-grunt": "~0.2.9",
+    "sinon": "~1.8.2"
   }
 }
