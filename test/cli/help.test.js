@@ -21,10 +21,7 @@ describe('help', function() {
           info.fake_log.calledOnce.should.be.ok;
           console.log.restore();
         })
-        .catch(function(err) {
-          console.log.restore();
-          throw err;
-        })
+        .catch(function(err) { console.log.restore(); throw err; })
         .nodeify(done);
     });
   });
