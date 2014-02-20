@@ -17,7 +17,8 @@ module.exports = function (grunt) {
     simplemocha: {
       options: {
         ignoreLeaks: false,
-        ui: 'bdd'
+        ui: 'bdd',
+        timeout: 5000
       },
       all: '<%= jshint.test %>'
     },
