@@ -20,8 +20,15 @@ describe "Reddit", ->
       info.reddit.should.have.property "_agent"
 
   describe ".prototype.login({ user, passwd })", ->
-    it "resolves successfully", (done) ->
-      info.reddit.login(testing_creds).nodeify done
+    it "resolves successfully returning the session's properties", (done) ->
+      info.reddit.login(testing_creds)
+        .then((session) ->
+          should.exist session
+          should.exist session.cookie
+          should.exist session.cookie_expiry
+          should.exist session.modhash
+        )
+        .nodeify done
 
     it "correctly sets this instance's session properties", ->
       info.reddit.should.have.property "_cookie"
