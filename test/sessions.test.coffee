@@ -4,6 +4,7 @@
 ##
 
 Promise  = require "bluebird"
+_        = require "lodash"
 jf       = require "jsonfile"
 sessions = require "../lib/sessions"
 sinon    = require "sinon"
@@ -16,7 +17,7 @@ describe "sessions", ->
     before ->
       info.read_file_stub = sinon.stub jf, "readFileAsync", (path) ->
         if path == "non-existent"
-          Promise.reject(new Error())
+          Promise.reject(_.extend(new Error(), { errno: 34 }))
         else if path == "existent"
           Promise.resolve({ something: "asdf" })
 
