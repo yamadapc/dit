@@ -3,11 +3,13 @@
 # Dependencies
 ##
 
-cli     = require("../../lib/cli")
-Promise = require("bluebird")
-should  = require("should")
-sinon   = require("sinon")
+cli      = require("../../lib/cli")
+Promise  = require("bluebird")
+should   = require("should")
+sessions = require("../../lib/sessions")
+sinon    = require("sinon")
 
+info = {}
 testing_creds = require("../testing_creds")
 
 promptSuite = (type) ->
@@ -52,9 +54,26 @@ describe "cli", ->
 
   describe ".argv(argv)", ->
     describe "action = 'login'", ->
+      before ->
+        info.save_stub = sinon.stub sessions, "save", (session) ->
+          info.ditconfig = session
+          Promise.fulfilled()
+
       it "logs-in this user", (done) ->
         cli.argv({
           _: ["login"],
           user: testing_creds.user,
           passwd: testing_creds.passwd
         }).nodeify(done)
+
+      it "saves this user's session", (done) ->
+        cli.argv({
+          _: ["login"],
+          user: testing_creds.user,
+          passwd: testing_creds.passwd
+        }).then(->
+            info.save_stub.called.should.be.ok
+          ).nodeify(done)
+
+      after ->
+        info.save_stub.restore()
