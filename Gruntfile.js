@@ -11,16 +11,18 @@ module.exports = function (grunt) {
       gruntfile: { src: 'Gruntfile.js'    },
       lib:       { src: ['lib/**/*.js']   },
       bin:       { src: ['bin/**/*.js']   },
-      test:      { src: ['test/**/*.js']  }
+      test:      { src: ['test/**/*.coffee']  }
     },
 
     simplemocha: {
       options: {
         ignoreLeaks: false,
         ui: 'bdd',
-        timeout: 5000
+        reporter: 'spec',
+        timeout: 5000,
+        compilers: 'coffee:coffee-script'
       },
-      all: '<%= jshint.test %>'
+      all: 'test/**/*.coffee'
     },
 
     watch: {
