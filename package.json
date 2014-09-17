@@ -28,7 +28,7 @@
     "bluebird": "~1.0.5",
     "jsonfile": "^1.1.1",
     "lodash": "^2.4.1",
-    "minimist": "0.0.7",
+    "optimist": "^0.6.1",
     "read": "~1.0.5",
     "superagent": "~0.16.0"
   },
