@@ -19,7 +19,7 @@ describe "sessions", ->
         if path == "non-existent"
           Promise.reject(_.extend(new Error(), { errno: 34 }))
         else if path == "existent"
-          Promise.resolve({ something: "asdf" })
+          Promise.resolve(JSON.stringify({ something: "asdf" }))
 
       info.write_file_stub = sinon.stub jf, "writeFileAsync", (path, obj) ->
         return Promise.fulfilled()
