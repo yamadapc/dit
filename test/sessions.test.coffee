@@ -3,9 +3,9 @@
 # Dependencies
 ##
 
+fs       = require "fs"
 Promise  = require "bluebird"
 _        = require "lodash"
-jf       = require "jsonfile"
 sessions = require "../lib/sessions"
 sinon    = require "sinon"
 should   = require "should"
@@ -15,20 +15,21 @@ info = {}
 describe "sessions", ->
   describe ".save(config)", ->
     before ->
-      info.read_file_stub = sinon.stub jf, "readFileAsync", (path) ->
+      info.read_file_stub = sinon.stub fs, "readFileAsync", (path) ->
         if path == "non-existent"
-          Promise.reject(_.extend(new Error(), { errno: 34 }))
+          Promise.reject(_.extend(new Error(), { cause: { errno: 34 } }))
         else if path == "existent"
           Promise.resolve(JSON.stringify({ something: "asdf" }))
 
-      info.write_file_stub = sinon.stub jf, "writeFileAsync", (path, obj) ->
+      info.write_file_stub = sinon.stub fs, "writeFileAsync", (path, obj) ->
         return Promise.fulfilled()
 
     it "tries to save new configuration files", (done) ->
       obj = { testing: true }
       sessions.save(obj, "non-existent")
         .then(->
-          info.write_file_stub.calledWithMatch("non-existent", obj).should.be.ok
+          call = info.write_file_stub.getCall(0)
+          JSON.parse(call.args[1]).should.eql obj
         )
         .nodeify(done)
 
@@ -37,7 +38,8 @@ describe "sessions", ->
       expected = { testing: true, something: "asdf" }
       sessions.save(obj, "existent")
         .then(->
-          info.write_file_stub.calledWithMatch("existent", expected).should.be.ok
+          call = info.write_file_stub.getCall(1)
+          JSON.parse(call.args[1]).should.eql expected
         )
         .nodeify(done)
 
