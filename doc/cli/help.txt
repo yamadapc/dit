@@ -5,6 +5,7 @@ Description:
 
 Commands:
   login                   create a new dit session
+  saved                   view your saved links
 
 Options:
   -u, --user <user>       user to log-in with
