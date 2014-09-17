@@ -1,0 +1,18 @@
+{
+  "headers": {
+    "set-cookie": [
+      "__cfduid=d096ae850cede5cfa21a4035bba5242301410953921488; expires=Mon, 23-Dec-2019 23:50:00 GMT; path=/; domain=.reddit.com; HttpOnly",
+      "secure_session=; Domain=reddit.com; Max-Age=-1410953921; Path=/; expires=Thu, 01-Jan-1970 00:00:01 GMT; HttpOnly",
+      "reddit_session=30799313%2C2014-09-17T04%3A38%3A41%2Ca5be464e7e73fdfbd34e0b33a3af26cdc3dda188; Domain=reddit.com; Max-Age=734962877; Path=/; expires=Thu, 31-Dec-2037 23:59:59 GMT; HttpOnly"
+    ]
+  },
+  "body": {
+    "json": {
+      "data": {
+        "cookie": "30799313,2014-09-17T04:35:53,bdba0749859306e2ee87392ad829aade46355d88",
+        "modhash": "uregvf3td9ed0b1f80c28bbf7ccbd27d95b4695c98bebe3fce",
+        "cookie_expiry": "secure_session"
+      }
+    }
+  }
+}
