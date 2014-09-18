@@ -1,5 +1,7 @@
 dit
 ===
+[![Build Status](https://travis-ci.org/yamadapc/dit.svg)](https://travis-ci.org/yamadapc/dit)
+- - -
 Reddit CLI utility
 
 ## Testing
