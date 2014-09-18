@@ -12,7 +12,9 @@ Reddit = require("../lib/reddit")
 info = {}
 
 # you have to include this in the project
-testing_creds = require("./testing_creds")
+testing_creds =
+  user: "someuser - this is irrelevant"
+  passwd: "super*secret*chicken"
 
 describe "Reddit", ->
   describe "new (constructor)", ->
