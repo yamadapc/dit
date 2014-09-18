@@ -22,11 +22,12 @@
   "scripts": {
     "test": "npm run jshint && npm run mocha",
     "jshint": "jshint lib/*.js lib/**/*.js bin/*",
-    "mocha": "mocha --compilers coffee:coffee-script/register"
+    "mocha": "mocha -t 100000 --compilers coffee:coffee-script/register"
   },
   "dependencies": {
     "bluebird": "~1.0.5",
     "lodash": "^2.4.1",
+    "mime": "^1.2.11",
     "optimist": "^0.6.1",
     "read": "~1.0.5",
     "superagent": "~0.16.0"
