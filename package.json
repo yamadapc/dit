@@ -2,6 +2,7 @@
   "name": "dit",
   "version": "0.0.1",
   "main": "index.js",
+  "bin": "bin/dit",
   "description": "Reddit CLI utility",
   "homepage": "https://github.com/yamadapc/dit",
   "bugs": "https://github.com/yamadapc/dit/issues",
