@@ -35,3 +35,10 @@ describe "sessions", ->
         .then =>
           call = @['fs.writeFileAsync'].getCall(1)
           JSON.parse(call.args[1]).should.eql expected
+
+  describe ".load([config_path])", ->
+    it "returns an empty object if there's no configuration file", ->
+      sessions.load("non-existent").then (conf) -> conf.should.eql {}
+
+    it "returns the stored configuration if it exists", ->
+      sessions.load("existent").then (conf) -> conf.should.eql something: "asdf"
