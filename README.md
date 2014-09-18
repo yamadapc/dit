@@ -1,6 +1,9 @@
 dit
 ===
 [![Build Status](https://travis-ci.org/yamadapc/dit.svg)](https://travis-ci.org/yamadapc/dit)
+[![Code Climate](https://codeclimate.com/github/yamadapc/dit/badges/gpa.svg)](https://codeclimate.com/github/yamadapc/dit)
+[![Dependency Status](https://david-dm.org/yamadapc/dit.svg)](https://david-dm.org/yamadapc/dit)
+[![devDependency Status](https://david-dm.org/yamadapc/dit/dev-status.svg)](https://david-dm.org/yamadapc/dit#info=devDependencies)
 - - -
 Reddit CLI utility
 
