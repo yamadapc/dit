@@ -31,16 +31,16 @@ describe "Reddit", ->
 
     it "resolves successfully returning the session's properties", ->
       info.reddit.login(testing_creds)
-        .then((session) ->
-          should.exist session
-          should.exist session.cookie
-          should.exist session.cookie_expiry
-          should.exist session.modhash
+        .then((config) ->
+          should.exist config
+          should.exist config.cookie
+          should.exist config.modhash
         )
 
     it "correctly sets this instance's session properties", ->
-      info.reddit.should.have.property "_cookie"
-      info.reddit.should.have.property "_modhash"
+      info.reddit.should.have.property "config"
+      info.reddit.config.should.have.property "cookie"
+      info.reddit.config.should.have.property "modhash"
 
   describe ".prototype.saved(user)", ->
     makeStub "endAsync", request.Request::, "endAsync", ->
@@ -52,3 +52,11 @@ describe "Reddit", ->
         saved.forEach (item) ->
           item.should.have.properties ["url", "title"]
         info.saved_res = saved
+
+  describe ".prototype._getCookieExpiry(set_cookie)", ->
+    it "parses out a cookie's expiration and returns it as a date", ->
+      set_cookie = [
+        "__cfduid=d096ae850cede5cfa21a4035bba5242301410953921488; expires=Mon, 23-Dec-2019 23:50:00 GMT; path=/; domain=.reddit.com; HttpOnly",
+        "secure_session=; Domain=reddit.com; Max-Age=-1410953921; Path=/; expires=Thu, 01-Jan-1970 00:00:01 GMT; HttpOnly",
+        "reddit_session=30799313%2C2014-09-17T04%3A38%3A41%2Ca5be464e7e73fdfbd34e0b33a3af26cdc3dda188; Domain=reddit.com; Max-Age=734962877; Path=/; expires=Thu, 31-Dec-2037 23:59:59 GMT; HttpOnly"
+      ]

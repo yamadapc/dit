@@ -8,6 +8,7 @@ Commands:
   saved                   view your saved links
 
 Options:
-  -u, --user <user>       user to log-in with
-  -p, --passwd <passwd>   password to log-in with
-  -h, --help              ouput this message
+  -u, --user <user>                        user to log-in with
+  -p, --passwd <passwd>                    password to log-in with
+  -h, --help                               ouput this message
+  -c, --config [path=$HOME/.ditconfig]     the path to the configuration file
