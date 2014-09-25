@@ -1,14 +1,10 @@
 #!/usr/bin/env node
 'use strict';
-/**
- * Dependencies
- * --------------------------------------------------------------------------*/
-
-var cli  = require('../lib/cli'),
+var cli = require('../lib/cli'),
     argv = require('optimist').argv;
 
-/**
- * Run the command-line client
- */
-
-cli.argv(argv);
+// Run the command-line client
+cli.argv(argv).done(
+  cli.exit,
+  cli.exit
+);
