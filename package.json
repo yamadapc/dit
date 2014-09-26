@@ -1,6 +1,6 @@
 {
   "name": "dit",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "index.js",
   "bin": "bin/dit",
   "description": "Reddit CLI utility",
