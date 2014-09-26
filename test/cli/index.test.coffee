@@ -38,6 +38,9 @@ promptSuite = (type) ->
       result.should.equal(input[name])
 
 describe "cli", ->
+  makeStub sessions, "load", ->
+    Promise.resolve({})
+
   describe "._getUser(program)", promptSuite.bind(null, "User")
 
   describe "._getPasswd(program)", promptSuite.bind(null, "Passwd")
@@ -123,11 +126,14 @@ describe "cli", ->
 
     describe "if `program.saved` is truthy", ->
       makeStub sessions, "save", (session) -> Promise.fulfilled()
+      makeStub cli, "prompt", -> Promise.resolve 'n'
       makeStub Reddit::, "login", -> Promise.fulfilled()
       makeStub Reddit::, "saved", -> Promise.fulfilled()
 
       it "logs-in the user and fetches saved links", ->
         cli.program( # cli's reddit instance thinks it's logged-in
+          user: 'user'
+          passwd: 'passwd'
           saved: true
         ).then =>
           @save.calledOnce.should.not.be.ok
