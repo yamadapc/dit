@@ -9,19 +9,20 @@ Reddit CLI utility
 
 ## Usage
 ```
-Usage: dit [options] [commands]
 
-Description:
-  Reddit CLI utility
+  Usage: dit [options]
 
-Commands:
-  login                   create a new dit session
-  saved                   view your saved links
+  Options:
 
-Options:
-  -u, --user <user>       user to log-in with
-  -p, --passwd <passwd>   password to log-in with
-  -h, --help              ouput this message
+    -h, --help                           output usage information
+    -V, --version                        output the version number
+    -u, --user [user]                    User to log-in with
+    -p, --passwd [passwd]                Password to log-in with
+    -c, --config [path=~/.ditconfig]     The path to the configuration file
+    -l, --login                          Create a new dit session and persist it
+    -s, --saved                          View your saved reddit links
+    -d, --download [target_dir=./saved]  Download your saved reddit links
+
 ```
 
 ## Testing
