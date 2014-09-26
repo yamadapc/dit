@@ -23,7 +23,8 @@
   "scripts": {
     "test": "npm run jshint && npm run mocha",
     "jshint": "jshint lib/*.js lib/**/*.js bin/*",
-    "mocha": "mocha -t 100000 -R mocha-spec-cov-alt --require blanket --compilers coffee:coffee-script/register test/**/*.test.coffee test/*.test.coffee"
+    "mocha": "mocha -t 100000 -R mocha-spec-cov-alt --require blanket --compilers coffee:coffee-script/register test/**/*.test.coffee test/*.test.coffee",
+    "coverage": "mocha -t 100000 -R html-cov --require blanket --compilers coffee:coffee-script/register test/**/*.test.coffee test/*.test.coffee > coverage.html"
   },
   "dependencies": {
     "bluebird": "^2.3.2",
