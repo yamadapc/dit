@@ -3,77 +3,66 @@
 # Dependencies
 ##
 
-cli      = require("../../lib/cli")
 Promise  = require("bluebird")
+makeStub = require("mocha-make-stub")
 should   = require("should")
+
+cli      = require("../../lib/cli")
+Reddit   = require("../../lib/reddit")
 sessions = require("../../lib/sessions")
-sinon    = require("sinon")
 
 info = {}
-testing_creds = require("../testing_creds")
 
 promptSuite = (type) ->
   name = type.toLowerCase()
-  it "prompts for the "+name+" if it wasn\'t in the argv object", (done) ->
-    expected = "type" + Math.random()
-    fake_prompt = sinon.stub cli, "prompt", ->
-      Promise.resolve(expected)
+  expected = "type" + Math.random()
+  makeStub cli, "prompt", ->
+    Promise.resolve(expected)
 
-    typeP = cli["get" + type]({})
+  it "prompts for the "+name+" if it wasn\'t in the argv object", () ->
+    typeP = cli["_get" + type]({})
 
     should.exist(typeP)
     typeP.should.have.property("then")
 
     typeP
       .then((s) ->
-        fake_prompt.calledOnce.should.be.ok
         s.should.equal(expected)
-        cli.prompt.restore()
       )
-      .catch((err) ->
-        cli.prompt.restore()
-        throw err
-      )
-      .nodeify(done)
 
-  it "returns argv."+type+" if it exists", (done) ->
+  it "returns argv."+type+" if it exists", () ->
     input = {}
     input[name] = "type" + Math.random()
-    cli["get" + type](input).then((result) ->
+    cli["_get" + type](input).then (result) ->
       result.should.equal(input[name])
-    ).nodeify(done)
 
 describe "cli", ->
-  describe ".getUser(argv)", promptSuite.bind(null, "User")
+  describe "._getUser(program)", promptSuite.bind(null, "User")
 
-  describe ".getPasswd(argv)", promptSuite.bind(null, "Passwd")
+  describe "._getPasswd(program)", promptSuite.bind(null, "Passwd")
 
-  describe ".getAction(argv)", ->
-    it "returns the last element in the argv._ Array", ->
-      cli.getAction({ _: ["something", "here"] }).should.equal("here")
+  describe ".program(program)", ->
+    describe "if `program.login` is truthy`", ->
+      makeStub sessions, "save", (session) ->
+        info.ditconfig = session
+        Promise.fulfilled()
 
-  describe ".argv(argv)", ->
-    describe "action = 'login'", ->
-      before ->
-        info.save_stub = sinon.stub sessions, "save", (session) ->
-          info.ditconfig = session
-          Promise.fulfilled()
+      makeStub Reddit::, "login", ->
+        Promise.fulfilled()
 
-      it "logs-in this user", (done) ->
-        cli.argv({
-          _: ["login"],
-          user: testing_creds.user,
-          passwd: testing_creds.passwd
-        }).nodeify(done)
+      # So we don't get output noise in the tests
+      makeStub cli, "_logSuccess", ->
 
-      it "saves this user's session", (done) ->
-        cli.argv({
-          _: ["login"],
-          user: testing_creds.user,
-          passwd: testing_creds.passwd
-        }).then(->
-            info.save_stub.called.should.be.ok
-          ).nodeify(done)
+      it "logs-in the user", ->
+        cli.program(
+          user: 'user'
+          passwd: 'passwd'
+          login: true
+        ).then =>
+          @save.calledOnce.should.be.ok
+          @login.calledOnce.should.be.ok
+          @login.getCall(0).args[0].should.eql
+            user: 'user'
+            passwd: 'passwd'
 
-      after ->
-        info.save_stub.restore()
+

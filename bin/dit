@@ -11,6 +11,8 @@ program
   .option('-u, --user [user]', 'User to log-in with')
   .option('-p, --passwd [passwd]', 'Password to log-in with')
 
+  .option('-v, --verbose', 'Be verbose')
+
   .option(
     '-c, --config [path=~/.ditconfig]',
     'The path to the configuration file',
@@ -21,14 +23,14 @@ program
   .option('-s, --saved', 'View your saved reddit links')
   .option(
     '-d, --download [target_dir=./saved]',
-    'Download your saved reddit links',
-    './saved'
+    'Download your saved reddit links'
+    // The default is set in the `reddit.saved` function.
   )
   .parse(process.argv);
 
 var resultP = cli.program(program);
 
 resultP && resultP.done(
-  cli.exit,
+  cli.exit.bind(cli, null),
   cli.exit
 );
