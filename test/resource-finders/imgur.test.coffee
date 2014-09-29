@@ -3,6 +3,8 @@
 # Dependencies
 ##
 
+fs = require("fs")
+path = require("path")
 makeStub = require("mocha-make-stub")
 Promise = require("bluebird")
 request = require("superagent")
@@ -15,8 +17,15 @@ noop = ->
 
 describe "resource-finders/imgur", ->
   describe ".find", ->
+    before ->
+      @mockDownload = ->
+        Promise.resolve path.join(__dirname, '../responses/imgur-album.html')
+
+    # Stub removal so we don't have to keep readding the response page:
+    makeStub fs, "unlinkAsync", -> Promise.fulfilled()
+
     it "returns all of an albums images if an album is passed in", ->
-      imgur.find(Downloader.downloadImpl, "https://imgur.com/a/2RY5K")
+      imgur.find(@mockDownload, "https://imgur.com/a/2RY5K")
         .then (targets) ->
           targets.should.eql [
             'http://i.imgur.com/xbz5Gei.jpg',
