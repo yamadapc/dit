@@ -46,7 +46,7 @@
     "mocha-make-stub": "^2.1.0",
     "mocha-spec-cov-alt": "^0.3.0",
     "should": "^6.0.3",
-    "sinon": "^1.10.3"
+    "sinon": "^1.17.3"
   },
   "config": {
     "blanket": {
