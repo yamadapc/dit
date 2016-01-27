@@ -42,7 +42,7 @@
     "coffee-script": "^1.8.0",
     "coveralls": "^2.11.1",
     "jshint": "^2.5.5",
-    "mocha": "^2.2.5",
+    "mocha": "^2.4.2",
     "mocha-make-stub": "^2.1.0",
     "mocha-spec-cov-alt": "^0.3.0",
     "should": "^6.0.3",
