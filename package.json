@@ -21,31 +21,31 @@
     }
   ],
   "scripts": {
-    "test": "npm run jshint && npm run mocha &&  mocha --require blanket -R mocha-spec-cov-alt",
+    "test": "npm run jshint && npm run mocha",
     "jshint": "jshint lib/*.js lib/**/*.js bin/*",
     "mocha": "mocha -t 100000 -R mocha-spec-cov-alt --require blanket --compilers coffee:coffee-script/register test/**/*.test.coffee test/*.test.coffee",
     "coverage": "mocha -t 100000 -R html-cov --require blanket --compilers coffee:coffee-script/register test/**/*.test.coffee test/*.test.coffee > coverage.html"
   },
   "dependencies": {
-    "bluebird": "^3.2.1",
-    "cheerio": "^0.20.0",
-    "cli-color": "^1.1.0",
+    "bluebird": "^2.3.2",
+    "cheerio": "^0.17.0",
+    "cli-color": "^0.3.2",
     "commander": "^2.3.0",
-    "lodash": "^4.2.0",
+    "lodash": "^2.4.1",
     "mime": "^1.2.11",
     "read": "~1.0.5",
-    "superagent": "^1.7.2",
-    "tmp": "0.0.28"
+    "superagent": "^0.19.0",
+    "tmp": "0.0.24"
   },
   "devDependencies": {
-    "blanket": "^1.1.7",
+    "blanket": "^1.1.6",
     "coffee-script": "^1.8.0",
     "coveralls": "^2.11.1",
     "jshint": "^2.5.5",
-    "mocha": "^2.4.5",
+    "mocha": "^2.2.5",
     "mocha-make-stub": "^2.1.0",
-    "mocha-spec-cov-alt": "^1.1.1",
-    "should": "^8.2.1",
+    "mocha-spec-cov-alt": "^0.3.0",
+    "should": "^6.0.3",
     "sinon": "^1.10.3"
   },
   "config": {
