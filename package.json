@@ -38,7 +38,7 @@
     "tmp": "0.0.24"
   },
   "devDependencies": {
-    "blanket": "^1.1.6",
+    "blanket": "1.1.7",
     "coffee-script": "^1.8.0",
     "coveralls": "^2.11.1",
     "jshint": "^2.5.5",
