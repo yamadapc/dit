@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "bluebird": "^2.3.2",
-    "cheerio": "^0.17.0",
+    "cheerio": "^0.20.0",
     "cli-color": "^0.3.2",
     "commander": "^2.3.0",
     "lodash": "^2.4.1",
