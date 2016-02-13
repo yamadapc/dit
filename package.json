@@ -27,7 +27,7 @@
     "coverage": "mocha -t 100000 -R html-cov --require blanket --compilers coffee:coffee-script/register test/**/*.test.coffee test/*.test.coffee > coverage.html"
   },
   "dependencies": {
-    "bluebird": "^2.3.2",
+    "bluebird": "^3.3.1",
     "cheerio": "^0.17.0",
     "cli-color": "^0.3.2",
     "commander": "^2.3.0",
